@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web:
+    build: ./server
+    container_name: energy-simply-challenge-web
+    image: energy-simply-challenge-web:0.1.0
+    ports:
+      - "80:80"
+    depends_on:
+            - db
+  db:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      SA_PASSWORD: "P@ssw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"

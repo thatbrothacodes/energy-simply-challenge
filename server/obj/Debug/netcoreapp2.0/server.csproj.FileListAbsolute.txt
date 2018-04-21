@@ -1,0 +1,10 @@
+/Users/mww132/sandbox/energy_simply_challenge/server/bin/Debug/netcoreapp2.0/server.deps.json
+/Users/mww132/sandbox/energy_simply_challenge/server/bin/Debug/netcoreapp2.0/server.runtimeconfig.json
+/Users/mww132/sandbox/energy_simply_challenge/server/bin/Debug/netcoreapp2.0/server.runtimeconfig.dev.json
+/Users/mww132/sandbox/energy_simply_challenge/server/bin/Debug/netcoreapp2.0/server.dll
+/Users/mww132/sandbox/energy_simply_challenge/server/bin/Debug/netcoreapp2.0/server.pdb
+/Users/mww132/sandbox/energy_simply_challenge/server/obj/Debug/netcoreapp2.0/server.csproj.CoreCompileInputs.cache
+/Users/mww132/sandbox/energy_simply_challenge/server/obj/Debug/netcoreapp2.0/server.AssemblyInfoInputs.cache
+/Users/mww132/sandbox/energy_simply_challenge/server/obj/Debug/netcoreapp2.0/server.AssemblyInfo.cs
+/Users/mww132/sandbox/energy_simply_challenge/server/obj/Debug/netcoreapp2.0/server.dll
+/Users/mww132/sandbox/energy_simply_challenge/server/obj/Debug/netcoreapp2.0/server.pdb
