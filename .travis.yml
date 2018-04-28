@@ -17,8 +17,7 @@ services:
 - docker
 install:
 - pip3 install --user awscli
-script: 
-after_success:
+script:
 - docker-compose build
 - docker tag challenge-energy-simply:0.2.0 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.2.0
 - eval $(aws ecr get-login --no-include-email)
