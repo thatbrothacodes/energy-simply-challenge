@@ -5,7 +5,7 @@
     "containerDefinitions": [
         {
             "name": "challenge-energy-simply-web-container",
-            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.4.0",
+            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.5.0",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
@@ -30,8 +30,12 @@
             "image": "microsoft/mssql-server-linux",
             "environment": [
                 {
-                    "SA_PASSWORD": "P@ssw0rd",
-                    "ACCEPT_EULA": "Y"
+                    "name": "SA_PASSWORD",
+                    "value": "P@ssw0rd"
+                },
+                {
+                    "name": "ACCEPT_EULA",
+                    "value": "Y"
                 }
             ],
             "cpu": 256,

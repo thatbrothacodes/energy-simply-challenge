@@ -4,7 +4,7 @@ services:
   web:
     build: ./server
     container_name: challenge-energy-simply-web
-    image: challenge-energy-simply:0.4.0
+    image: challenge-energy-simply:0.5.0
     ports:
       - "80:80"
     depends_on:
