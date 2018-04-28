@@ -4,8 +4,8 @@
     "networkMode": "awsvpc",
     "containerDefinitions": [
         {
-            "name": "challenge-energy-simply-container",
-            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.2.0",
+            "name": "challenge-energy-simply-web-container",
+            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.3.0",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
@@ -20,7 +20,29 @@
                 "options": {
                     "awslogs-group": "awslogs-challenge-energy-simply",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply"
+                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply-web"
+                }
+            },
+            "essential": true
+        },
+        {
+            "name": "challenge-energy-simply-db-container",
+            "image": "microsoft/mssql-server-linux",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 1433,
+                    "hostPort": 1433,
+                    "protocol": "tcp"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "awslogs-challenge-energy-simply",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply-db"
                 }
             },
             "essential": true
