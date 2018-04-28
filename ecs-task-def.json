@@ -5,7 +5,7 @@
     "containerDefinitions": [
         {
             "name": "challenge-energy-simply-web-container",
-            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.3.0",
+            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.4.0",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
@@ -20,7 +20,7 @@
                 "options": {
                     "awslogs-group": "awslogs-challenge-energy-simply",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply-web"
+                    "awslogs-stream-prefix": "awslogs-challenge-energy-web-simply"
                 }
             },
             "essential": true
@@ -28,6 +28,12 @@
         {
             "name": "challenge-energy-simply-db-container",
             "image": "microsoft/mssql-server-linux",
+            "environment": [
+                {
+                    "SA_PASSWORD": "P@ssw0rd",
+                    "ACCEPT_EULA": "Y"
+                }
+            ],
             "cpu": 256,
             "memory": 512,
             "portMappings": [
@@ -42,14 +48,14 @@
                 "options": {
                     "awslogs-group": "awslogs-challenge-energy-simply",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply-db"
+                    "awslogs-stream-prefix": "awslogs-challenge-energy-db-simply"
                 }
             },
             "essential": true
         }
     ],
-    "cpu": "256", 
-    "memory": "512",
+    "cpu": "512", 
+    "memory": "1024",
     "requiresCompatibilities": [
         "FARGATE"
     ]
