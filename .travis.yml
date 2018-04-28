@@ -12,7 +12,7 @@ addons:
     packages:
     - python3.6
     - python3-pip
-language: node_js
+language: csharp
 services:
 - docker
 install:
