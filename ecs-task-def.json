@@ -1,0 +1,34 @@
+{
+    "executionRoleArn": "arn:aws:iam::826109606486:role/ecsTaskExecutionRole",
+    "family": "challenge-energy-simply-task-def",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "challenge-energy-simply-container",
+            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.2.0",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "awslogs-challenge-energy-simply",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "awslogs-challenge-energy-simply"
+                }
+            },
+            "essential": true
+        }
+    ],
+    "cpu": "256", 
+    "memory": "512",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
+}

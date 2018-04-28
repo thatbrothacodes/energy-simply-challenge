@@ -1,0 +1,31 @@
+env:
+  global:
+  - secure: M0kfZ9cDJaw1xES3Uypag/nrr8R0DCfnKselwqDdXrooOSRpi0wglPcWI/LAVoFCdimEmTnaCm4BKpcIXBHCc4trFELontNnNgrQCJZ9qqpoPInwLNu6c/ua/CHea2xCG8cyP4ae6RUQT4ifPVoa5nD75QMEazaIjsgTxTk6UngY/ECl/ZtnQiZ13ZAmbnxx6Z8HkHIXA/L60kuk6cqwkCVCDRHdLnQJaqtErRP31XLgxCsu0UNiWhUMRCA78rCo/oL2h45ext+rajyOHx3zgq2AVf12tXl2mz516Mch10pMWyoiRQPMTU71M+CzKbAsfTyQFRitXjgrPeGzNLpXkBsPghWd6MVEi4e+Cjj0+LD4jYYYhHzf6Sf/Gfifs5x24VGFNl2cEzb64F5F6eMNOAv1EDgQ/iYQKnWLqAuljxZZ9XipPWyAm0eOWnm+BG624NGisooRFbKPm8BClS1peXxAMzYMvc3KrGWOAdLaqSJmawCt0dB5hkI9NnMJNZfLuLTxNT8IXCodzFc3HU4qH4Ftg8+5v/lfT0ZJL2XBlZXP7CPILF4WIyY9vYP6SfSBjYolOjPb+zj/Hk3wzht2aa2bRMokxTHFgarzoSimuinmB82Lr8gLvhPmdXornl3CBMNahV5CKDXMdrcYaootSb3IxxBpgfIWQY0YKwz6VjM=
+  - secure: CUtG/pip6QPf3PQjZGEBJhjdS8Dm2UqjQEl5h/H0fhTtA3eO6OLWivS/pZRgzXnlVwR++UaoZPqbDXv+f3mvalw72q1N+UVlfrlloBIR1+/FI2emR31eaRN1SKyDUcikA5QltDbsu9AbneDRyJJWlFda9Vm4io2F1cib1f3gqnMYORAQUHzs/KQun9f3UF48T8C0TJt/Gogv3WvSovwrgb8Pt9JPfGCPVQfw/blECeD3ok2w03tBkbquwm43nOCjjj2hY6XK/ykHwuz4//woPZLHSH7M4hZhSrJwml+nLbYuGspephZ7hFZifWgmtbDq1KmPS2x1zmnZ0Jo8JiKuNi3NQhORK+16Wtn6mYeXUH4wJ7xjpsaFc/uJro8l3ozmqbRXP/v+qOpZVkb9G8QMVCpyivkbDO6OioxBu05ZsA8Sd8cPR7XgrAXjS/huoYT9zKauOq+W8RHxQ7c38c923blTT6l9j0Nz6+8jmSiOLJLUz76NbNsKdRP4eDVpbi5f9AClTSpN6m7B7/cCHsk9+lNOujOgfpKM59NvMUtMpd6FkzCzBPSA15YwKxedCVL/cj7SML+YcEP2r6EzOI/3f/JBKiuQJOYfhelyjgp6Az6+kTVYZsER3OLgK57r8TDGhKpeMAYwcwU0EUFl/QXMDJtbi6HJ2PQ91P83z6FZU4I=
+dist: trusty
+sudo: required
+addons:
+  chrome: stable
+  apt:
+    sources:
+    - deadsnakes
+    packages:
+    - python3.6
+    - python3-pip
+language: csharp
+services:
+- docker
+install:
+- pip3 install --user awscli
+script: 
+after_success:
+- docker-compose build
+- docker tag challenge-energy-simply:0.2.0 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.2.0
+- eval $(aws ecr get-login --no-include-email)
+- docker push 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.2.0
+- aws ecs register-task-definition --cli-input-json file://ecs-task-def.json
+- aws ecs update-service --service challenge-energy-simply-service --task-definition challenge-energy-simply-task-def --cluster challenge-web-apps
+
+# aws ecs create-cluster --cluster-name challenge-web-apps
+# aws ecr create-repository --repository-name challenge-energy-simply
+# aws ecs create-service --cluster challenge-web-apps --service-name challenge-energy-simply-service --task-definition challenge-energy-simply-task-def --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-ae51f9a1,subnet-462de70c],securityGroups=[sg-e5eee493],assignPublicIp=ENABLED}"

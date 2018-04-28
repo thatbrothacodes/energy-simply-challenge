@@ -1,0 +1,15 @@
+{
+    "cluster": "challenge-web-apps",
+    "serviceName": "challenge-energy-simply-service",
+    "taskDefinition": "challenge-energy-simply-task-def",
+    "launchType": "FARGATE",
+    "platformVersion": "1.1.0",
+    "networkConfiguration": {
+       "awsvpcConfiguration": {
+          "assignPublicIp": "ENABLED",
+          "securityGroups": [ "sg-e5eee493" ],
+          "subnets": [ "subnet-ae51f9a1" ]
+       }
+    },
+    "desiredCount": 1
+}
