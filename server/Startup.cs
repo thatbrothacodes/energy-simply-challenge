@@ -11,6 +11,8 @@ using server.data;
 using server.data.models;
 using server.data.repositories;
 using server.services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace server
 {
@@ -53,6 +55,8 @@ namespace server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
             }
 
             app.UseMvc(routes => {
@@ -60,6 +64,9 @@ namespace server
                     name: "default",
                     template: "{controller=Customers}/{action=Index}/{id?}");
             });
+
+            app.UseStaticFiles();
+            app.UseStatusCodePages();
         }
     }
 }

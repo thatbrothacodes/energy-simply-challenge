@@ -1,0 +1,37 @@
+@model IEnumerable<server.data.models.Plan>
+
+@{
+    ViewData["Title"] = "Energy Simply - Plans";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanFixedCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanVarCost)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.PlanID)</td>
+                <td>@Html.DisplayFor(modelItem => item.PlanName)</td>
+                <td>@Html.DisplayFor(modelItem => item.PlanFixedCost)</td>
+                <td>@Html.DisplayFor(modelItem => item.PlanVarCost)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="Plans/Add">Add</a>
+</div>

@@ -6,17 +6,43 @@ using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-using System.Linq;
-
 namespace server.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly ICustomerService _service;
 
-        public async Task<List<Customer>> Index(int page = 0, int pageSize = 50)
+        [HttpGet]
+        public async Task<ActionResult> Index(int page = 0, int pageSize = 50)
         {
-            return await this._service.getCustomers(page, pageSize);
+            return View(await this._service.getCustomers(page, pageSize));
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Add() {
+            var vm = new CustomerViewModel();
+            vm.Plans = await _service.getPlans();
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(CustomerViewModel customer) {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                   await this._service.addCustomer(customer);
+                }
+                catch
+                {
+                    return RedirectToAction("Errors", new { statusCode = 500 });
+                }
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(customer);
         }
 
         public CustomersController(ICustomerService service) {

@@ -1,0 +1,45 @@
+@model IEnumerable<server.data.models.Customer>
+
+@{
+    ViewData["Title"] = "Energy Simply - Customers";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plan.PlanID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plan.PlanFixedCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plan.PlanVarCost)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CustID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustName)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustEmail)</td>
+                <td>@Html.DisplayFor(modelItem => item.Plan.PlanID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Plan.PlanFixedCost)</td>
+                <td>@Html.DisplayFor(modelItem => item.Plan.PlanVarCost)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="Customers/Add">Add</a>
+</div>

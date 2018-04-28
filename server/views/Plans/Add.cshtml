@@ -1,0 +1,23 @@
+@model server.data.models.Plan
+
+@{
+    ViewData["Title"] = "Energy Simply - Add Plan";
+}
+
+<h2>Add Plan</h2>
+
+<form asp-action="Add" asp-controller="Plans" method="POST">
+  <div class="form-group">
+    <label asp-for="PlanName"></label>
+    <input type="text" class="form-control" asp-for="PlanName" aria-describedby="planName" placeholder="Enter plan name">
+  </div>
+  <div class="form-group">
+    <label asp-for="PlanFixedCost"></label>
+    <input class="form-control" aria-describedby="planFixedCost" placeholder="$0.00" asp-for="PlanFixedCost" />
+  </div>
+  <div class="form-group">
+    <label asp-for="PlanVarCost"></label>
+    <input asp-for="PlanVarCost" class="form-control" aria-describedby="planVarCost" placeholder="$0.00" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -13,9 +13,35 @@ namespace server.Controllers
     {
         private readonly IPlanService _service;
 
-        public async Task<List<Plan>> Index(int page = 0, int pageSize = 50)
+        [HttpGet]
+        public async Task<ActionResult> Index(int page = 0, int pageSize = 50)
         {
-            return await this._service.getPlans(page, pageSize);
+            return View(await this._service.getPlans(page, pageSize));
+        }
+
+        [HttpGet]
+        public ActionResult Add() {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Add(Plan plan) {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                   await this._service.addPlan(plan);
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                
+                return RedirectToAction("Index");
+            }
+
+            return View(plan);
         }
 
         public PlansController(IPlanService service) {

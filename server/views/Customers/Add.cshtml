@@ -1,0 +1,39 @@
+@model server.data.models.CustomerViewModel
+
+@{
+    ViewData["Title"] = "Energy Simply - Add Customer";
+}
+
+<h2>Add Customer</h2>
+
+<form asp-action="Add" asp-controller="Customers" method="post"> 
+   <div class="form-group"> 
+      <label asp-for="CustName"></label> 
+      <input asp-for="CustName" type="text" class="form-control" required/>
+      <div class="invalid-tooltip">
+          Please enter a customer name
+      </div>
+      <span asp-validation-for="CustName"></span> 
+   </div>
+   <div class="form-group"> 
+        <label asp-for="CustEmail"></label> 
+        <input asp-for="CustEmail" type="email" class="form-control" required/>
+        <div class="invalid-tooltip">
+            Please enter a valid email
+        </div>
+        <span asp-validation-for="CustEmail"></span> 
+   </div>
+   <div class="form-group"> 
+        <label asp-for="CustPlanID"></label>
+        <select class="selectpicker form-control" asp-for="CustPlanID" asp-items="@(new SelectList(Model.Plans,"PlanID","PlanName"))" required>
+            <option value="">Please select one</option>
+        </select>
+        <div class="invalid-tooltip">
+            Please select a plan
+        </div> 
+        <span asp-validation-for="CustPlanID"></span> 
+   </div>
+   <div> 
+      <input type="submit" class="btn btn-primary" value="Save" /> 
+   </div> 
+</form>

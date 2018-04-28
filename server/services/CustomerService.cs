@@ -10,8 +10,14 @@ namespace server.services {
     public class CustomerService : ICustomerService
     {
         IUnitOfWork _unitOfWork;
-        public async Task<Customer> addCustomer(Customer customer)
+        public async Task<Customer> addCustomer(CustomerViewModel viewModel)
         {
+            var customer = new Customer {
+                CustName = viewModel.CustName,
+                CustEmail = viewModel.CustEmail,
+                CustPlanID = viewModel.CustPlanID
+            };
+
             return await this._unitOfWork.CustomerRepository.AddAsyn(customer);
         }
 
@@ -19,6 +25,11 @@ namespace server.services {
         {
              var items = await this._unitOfWork.CustomerRepository.GetAllAsync();
              return items.Skip(page).Take(pageSize).ToList();
+        }
+
+        public async Task<List<Plan>> getPlans()
+        {
+             return (await this._unitOfWork.PlanRepository.GetAllAsync()).ToList();
         }
 
         public async Task<Customer> updateCustomer(Customer customer)
@@ -32,7 +43,8 @@ namespace server.services {
     }
     public interface ICustomerService {
         Task<List<Customer>> getCustomers(int page, int pageSize);
-        Task<Customer> addCustomer(Customer customer);
+        Task<List<Plan>> getPlans();
+        Task<Customer> addCustomer(CustomerViewModel customer);
         Task<Customer> updateCustomer(Customer customer);
     }
 }
