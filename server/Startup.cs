@@ -22,7 +22,7 @@ namespace server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            const String connection = @"Server=db;Database=CRM;User=sa;Password=P@ssw0rd;";
+            const String connection = @"Server=challenge-energy-simply-db-container;Database=CRM;User=sa;Password=P@ssw0rd;";
 
             services.AddDbContext<CRMContext>(opt => opt.UseSqlServer(connection));
             services.AddTransient<ICustomerRepository, CustomerRepository>((ctx) => {
