@@ -13,6 +13,8 @@ using server.data.repositories;
 using server.services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace server
 {
@@ -67,8 +69,14 @@ namespace server
             });
 
             if(env.IsProduction()) {
-                // app.UsePathBase("/demos/dotnet");
-                connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
+                // connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
+
+                app.UseStaticFiles(new StaticFileOptions()
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
+                    RequestPath = new PathString("/demos/dotnet/")
+                });
             }
 
             app.UseStaticFiles();
