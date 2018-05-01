@@ -4,15 +4,17 @@ services:
   challenge-energy-simply-web-container:
     build: ./server
     container_name: challenge-energy-simply-web
-    image: challenge-energy-simply:0.6.0
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    image: challenge-energy-simply:0.8.0
     ports:
-      - "80:80"
+      - "5000:80"
     depends_on:
-            - db
+      - challenge-energy-simply-db-container
   challenge-energy-simply-db-container:
     image: "microsoft/mssql-server-linux"
     environment:
-      SA_PASSWORD: "P@ssw0rd"
-      ACCEPT_EULA: "Y"
+      - SA_PASSWORD=P@ssw0rd
+      - ACCEPT_EULA=Y
     ports:
       - "1433:1433"

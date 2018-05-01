@@ -36,7 +36,7 @@ namespace server.data.repositories {
                     transaction.Commit();
                     newId++;
                     return t;
-                } catch (Exception ex) {
+                } catch {
                     transaction.Rollback();
                     return null;
                 }

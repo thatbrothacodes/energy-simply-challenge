@@ -65,6 +65,10 @@ namespace server
                     template: "{controller=Customers}/{action=Index}/{id?}");
             });
 
+            if(env.IsProduction()) {
+                app.UsePathBase("/demos/dotnet");
+            }
+
             app.UseStaticFiles();
             app.UseStatusCodePages();
         }
