@@ -6,7 +6,7 @@ services:
     container_name: challenge-energy-simply-web
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    image: challenge-energy-simply:0.8.0
+    image: challenge-energy-simply:0.9.0
     ports:
       - "5000:80"
     depends_on:
