@@ -19,9 +19,9 @@ install:
 - pip3 install --user awscli
 script:
 - docker-compose build
-- docker tag challenge-energy-simply:0.13.0 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.13.0
+- docker tag challenge-energy-simply:0.14.0 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.14.0
 - eval $(aws ecr get-login --no-include-email)
-- docker push 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.13.0
+- docker push 826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.14.0
 - aws ecs register-task-definition --cli-input-json file://ecs-task-def.json
 - aws ecs update-service --service challenge-energy-simply-service --task-definition challenge-energy-simply-task-def --cluster challenge-web-apps
 

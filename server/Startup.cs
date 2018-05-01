@@ -69,14 +69,7 @@ namespace server
             });
 
             if(env.IsProduction()) {
-                // connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
-
-                app.UseStaticFiles(new StaticFileOptions()
-                {
-                    FileProvider = new PhysicalFileProvider(
-                        Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
-                    RequestPath = new PathString("/demos/dotnet/")
-                });
+                connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
             }
 
             app.UseStaticFiles();

@@ -5,7 +5,7 @@
     "containerDefinitions": [
         {
             "name": "challenge-energy-simply-web-container",
-            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.13.0",
+            "image": "826109606486.dkr.ecr.us-east-1.amazonaws.com/challenge-energy-simply:0.14.0",
             "cpu": 256,
             "memory": 512,
             "portMappings": [

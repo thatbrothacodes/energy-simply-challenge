@@ -2,7 +2,12 @@
 <html>
     <head>
         <title>Energy Simply Challenge</title>
-        <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")" />
+        <environment names="Development">
+            <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/dist/css/bootstrap.css")" />
+        </environment>
+        <environment names="Production">
+            <link rel="stylesheet" href="@Url.Content("~/demos/dotnet/lib/bootstrap/dist/css/bootstrap.css")" />
+        </environment>
     </head>
     <body>
         <div class="container">
