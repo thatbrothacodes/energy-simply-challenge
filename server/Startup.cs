@@ -18,11 +18,12 @@ namespace server
 {
     public class Startup
     {
+        String connection = @"Server=challenge-energy-simply-db-container;Database=CRM;User=sa;Password=P@ssw0rd;";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            const String connection = @"Server=challenge-energy-simply-db-container;Database=CRM;User=sa;Password=P@ssw0rd;";
 
             services.AddDbContext<CRMContext>(opt => opt.UseSqlServer(connection));
             services.AddTransient<ICustomerRepository, CustomerRepository>((ctx) => {
@@ -67,6 +68,7 @@ namespace server
 
             if(env.IsProduction()) {
                 app.UsePathBase("/demos/dotnet");
+                connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
             }
 
             app.UseStaticFiles();
