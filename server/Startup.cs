@@ -67,7 +67,7 @@ namespace server
             });
 
             if(env.IsProduction()) {
-                app.UsePathBase("/demos/dotnet");
+                // app.UsePathBase("/demos/dotnet");
                 connection = @"Server=localhost;Database=CRM;User=sa;Password=P@ssw0rd;";
             }
 
